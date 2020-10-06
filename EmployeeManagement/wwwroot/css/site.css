@@ -1,0 +1,225 @@
+﻿/* Common styles */
+html {
+    overflow-y: scroll;
+}
+
+#main-container {
+    padding-top: 30px;
+    padding-bottom: 80px;
+}
+
+.width-8 { width: 8%; }
+.width-12 { width: 12%; }
+.width-13 { width: 13%; }
+.width-16 { width: 16%; }
+.width-25 { width: 25%; }
+.width-30 { width: 30%; }
+.width-45 { width: 45%; }
+.width-60 { width: 60%; }
+
+a.disabled-link {
+   pointer-events: none;
+   cursor: default;
+   color: gray;
+}
+
+/* Bootbox dialog overrides */
+.modal-open{
+   overflow: hidden !important; 
+   padding: 0 !important;
+}
+
+.modal-open .modal{
+   overflow: hidden !important; 
+}
+
+.bootbox-confirm div div div button.btn-primary {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Employee list and assignment list pages styles */
+#employee-table a,
+#assignment-table a {
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+#employee-table .assignment-container,
+#assignment-table .employee-container {
+    display: none;   
+}
+
+#employee-table p,
+#assignment-table p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for pages: EmployeeForm, AssignmentForm, Register and Login */
+#assignment-form h5, 
+#employee-form h5 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+#assignment-form .form-label,
+#employee-form .form-label,
+#register-form .form-label,
+#login-form .form-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+#assignment-form .form-check-input, 
+#employee-form .form-check-input, 
+#login-form .form-check-input {
+    position: static;    
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+}
+
+#assignment-form .form-check-label,
+#employee-form .form-check-label,
+#login-form .form-check-label {    
+    margin: 0;
+    padding: 0 0 0 15px;    
+}
+
+#login-form .form-check-label{
+    font-weight: 600;
+}
+
+#assignment-form .input-validation-error,
+#employee-form .input-validation-error,
+#register-form .input-validation-error,
+#login-form .input-validation-error {
+    border-color: red;
+    background-color: #fee;
+ }
+
+#register-form .validation-summary-errors ul, 
+#login-form .validation-summary-errors ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#register-form .validation-summary-errors, 
+#login-form .validation-summary-errors {
+    margin-bottom: 20px;
+}
+
+/* Employee details page styles */
+.bar {
+    background-color: #007bff;
+    height: 15px;
+    width: 0%;
+}
+
+.progress-indicator{
+    font-size: 18px;
+}
+
+#employee-card {
+    font-size: 18px;
+    margin-top: 60px;
+    width: 440px;
+}
+
+#employee-card .card-body {
+    margin: 5px 0 30px 20px;
+}
+
+#employee-card h4 {
+    font-size: 30px;   
+}
+
+#employee-card p {    
+    margin: 0;
+    padding: 0;
+    padding-bottom: 3px;
+}
+
+#employee-card a {
+    display: inline-block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+}
+
+#employee-card .assignment-container {
+    display: none;    
+    margin-left: 12px;
+}
+
+/* Default MVC Template project styles */
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

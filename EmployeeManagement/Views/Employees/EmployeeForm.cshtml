@@ -1,0 +1,78 @@
+﻿@model EmployeeFormViewModel
+
+@{
+    ViewBag.Title = Model.ViewHeading;
+}
+
+<h2 class="heading">@Model.ViewHeading</h2>
+
+<div class="row">
+    <div class="col-md-4 mt-4">
+        <form id="employee-form" asp-action="@Model.Action" method="post" asp-antiforgery="true">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label class="form-label" asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" autofocus="autofocus" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="BirthDate"></label>
+                <input asp-for="BirthDate" class="form-control" placeholder="eg 1 Jan 2020..">
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="HireDate"></label>
+                <input asp-for="HireDate" class="form-control" placeholder="eg 1 Jan 2020..">
+                <span asp-validation-for="HireDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="DepartmentId"></label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="@(new SelectList(Model.Departments, "Id", "Name"))">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="Position"></label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+
+            @if (Model.Assignments.Count > 0)
+            {
+                <h5>Choose assignments for this employee</h5>
+
+                @for (int i = 0; i < Model.Assignments.Count; i++)
+                {
+                    <div class="form-group form-check d-flex align-items-center" >
+                        <input type="hidden" asp-for="@Model.Assignments[i].AssignmentId" />
+                        <input type="hidden" asp-for="@Model.Assignments[i].AssignmentName" />
+                        <input asp-for="@Model.Assignments[i].IsSelected" class="form-check-input" />
+                        <label class="form-check-label" asp-for="@Model.Assignments[i].IsSelected">
+                            @Model.Assignments[i].AssignmentName
+                        </label>
+                    </div>
+                }
+            }
+
+            <button type="submit" class="btn btn-primary mt-3">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />    
+}

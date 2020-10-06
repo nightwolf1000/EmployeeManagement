@@ -1,0 +1,46 @@
+﻿@model AssignmentFormViewModel
+
+@{
+    ViewBag.Title = Model.ViewHeading;
+}
+
+<h2 class="heading">@Model.ViewHeading</h2>
+
+<div class="row">
+    <div class="col-md-4 mt-4">
+        <form id="assignment-form" asp-action="@Model.Action" method="post" asp-antiforgery="true">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label class="form-label" asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" autofocus="autofocus" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            @if (Model.Employees.Count > 0)
+            {
+                <h5>Give it to the following employees:</h5>
+
+                @for (int i = 0; i < Model.Employees.Count; i++)
+                {
+                    <div class="form-group form-check d-flex align-items-center">
+                        <input type="hidden" asp-for="@Model.Employees[i].EmployeeId" />
+                        <input type="hidden" asp-for="@Model.Employees[i].EmployeeName" />
+                        <input type="hidden" asp-for="@Model.Employees[i].DepartmentName" />
+                        <input asp-for="@Model.Employees[i].IsSelected" class="form-check-input" />
+                        <label class="form-check-label" asp-for="@Model.Employees[i].IsSelected">
+                            @Model.Employees[i].EmployeeName <i>(From: @Model.Employees[i].DepartmentName)</i>
+                        </label>
+                    </div>
+                }
+            }
+            <button type="submit" class="btn btn-primary mt-3">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

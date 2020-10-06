@@ -1,0 +1,66 @@
+﻿@model AssignmentListViewModel
+
+@{
+    ViewBag.Title = Model.ViewHeading;
+}
+
+<h2>@Model.ViewHeading</h2>
+
+<div class="row">
+    <div class="col-md-5 mt-3 pb-5">
+        <form asp-action="Search" method="post" id="assignment-search-form">
+            <div class="input-group">
+                <input asp-for="SearchTerm" class="form-control" placeholder="Search assignments...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="alert alert-info @(Model.Assignments.Any() ? "d-none" : "")">
+    @(string.IsNullOrEmpty(Model.SearchTerm) ? "We don't have any assignments at the moment." : "No assignments were found")
+</div>
+
+<a asp-action="Create" class="btn btn-primary my-3">Add an Assignment</a>
+
+<div class="row">
+    <div class="col-md-9">
+        <table id="assignment-table" class="table table-bordered @(!Model.Assignments.Any() ? "d-none" : "")">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>Assignment</th>
+                    <th class="width-45 text-center">Assigned To:</th>
+                    <th class="width-13 text-center">Edit</th>
+                    <th class="width-13 text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var assignment in Model.Assignments)
+                {
+                    <tr>
+                        <td>@assignment.Name</td>
+                        <td class="text-center">
+                            <a href="#"
+                               class="js-toggle-employees js-employees-hidden @(assignment.GetEmployeeNumber() > 0 ? "" : "disabled-link")"
+                               data-assignment-id="@assignment.Id">
+                                @(assignment.GetEmployeeNumber() > 0 ? "View employees" : "Assigned to no one")
+                            </a>
+                            <div class="employee-container"></div>
+                        </td>
+                        <td class="text-center"><a asp-action="Edit" asp-route-id="@assignment.Id">Edit</a></td>
+                        <td class="text-center"><a href="#" class="js-delete-assignment" data-assignment-id="@assignment.Id">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/lib/bootbox/bootbox.min.js"></script>
+    <script src="~/lib/toastr/toastr.js/toastr.min.js"></script>
+    <script src="~/js/assignmentList.js"></script>
+}

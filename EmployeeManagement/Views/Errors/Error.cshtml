@@ -1,0 +1,10 @@
+﻿@model CustomErrorViewModel
+
+@{
+    ViewBag.Title = Model.ErrorDefinition;
+}
+
+<header>
+    <h1 class="text-danger heading">@Model.ErrorDefinition</h1>
+    <p class="text-danger">@Model.Message</p>
+</header>
